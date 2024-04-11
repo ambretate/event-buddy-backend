@@ -38,6 +38,9 @@ let EventSchema = new Schema({
   category: {
     type: String,
   },
+  featured: {
+    type: Boolean,
+  },
 });
 
 export default mongoose.model("events", EventSchema);

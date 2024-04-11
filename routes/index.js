@@ -1,6 +1,6 @@
 import { Router } from "express";
 import userRoutes from "./users.js";
-import eventRoutes from "./events.js";
+// import eventRoutes from "./events.js";
 
 const router = Router();
 
@@ -9,6 +9,6 @@ router.get("/", (request, response) =>
 );
 
 router.use("/users", userRoutes);
-router.use("/events", eventRoutes);
+// router.use("/events", eventRoutes);
 
 export default router;

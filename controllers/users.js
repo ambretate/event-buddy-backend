@@ -80,7 +80,7 @@ export const verify = async (request, response) => {
             response.json(payload);
         }
     } catch (error){
-        console.log(error.message):
+        console.log(error.message);
         response.status(401).send("Not Authorized");
     }
 };
