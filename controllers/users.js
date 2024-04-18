@@ -131,9 +131,9 @@ export const updateUser = async (request, response) => {
         const payload = jwt.verify(token, TOKEN_KEY);
 
         if (payload) { 
-            const { firstName, lastName, email, password, updatedPassword } = request.body;
+            const { firstName, lastName, oldPassword, password, passwordConfirmation } = request.body;
 
-            const user = await User.findById(payload.id).select("firstName lastName email password_digest");
+            const user = await User.findById(payload.id).select("firstName lastName password_digest");
 
             if (firstName, lastName) {
                 const updated_user = await User.findByIdAndUpdate(user._id, { firstName, lastName })
@@ -149,8 +149,8 @@ export const updateUser = async (request, response) => {
                 const updated_token = jwt.sign(updated_payload, TOKEN_KEY);
                 response.status(201).json({ token: updated_token });
             } else {
-                if (await bcrypt.compare(password, user.password_digest)) {
-                    const new_password_digest = await bcrypt.hash(updatedPassword, SALT_ROUNDS);
+                if (await bcrypt.compare(oldPassword, user.password_digest)) {
+                    const new_password_digest = await bcrypt.hash(passwordConfirmation, SALT_ROUNDS);
 
                     const updated_user = await User.findByIdAndUpdate(user._id, { password_digest: new_password_digest});
 
