@@ -73,7 +73,7 @@ export const signIn = async(request, response) => {
 
 export const verify = async (request, response) => {
     try {
-        const token = request.headers.authorization.split(" ")[1];//need to verify the indice!
+        const token = request.headers.authorization.split(" ")[1];
         const payload = jwt.verify(token, TOKEN_KEY);
         console.log(payload);
         if (payload) {
@@ -110,13 +110,16 @@ export const updateSavedEvents = async (request, response) => {
 
         if (payload) {
             const userId = payload.id;
-            const { savedEvent } = request.params; //confirm this is passing event.id
+            const { eventId } = request.params; //confirm this is passing event.id
+
+            // Ensure savedEvent is an array
+            const eventIds = Array.isArray(eventId) ? eventId : [eventId];
 
             await User.findByIdAndUpdate(userId, {
-                $addToSet: { savedEvent: savedEvent},
+                $addToSet: { savedEvents: { $each: eventIds } },
             });
 
-            response.json({message: "Followed Successfully"});
+            response.json({message: "Saved Successfully"});
         }
     } catch (error){
         console.error(error);

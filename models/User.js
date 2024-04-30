@@ -22,7 +22,7 @@ const UserSchema = new Schema(
       required: true,
       select: false,
     },
-    savedEvent: [{ type: Schema.Types.ObjectId, ref: "events" }],
+    savedEvents: [{type: String}],
   },
   { timestamps: true }
 );
