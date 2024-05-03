@@ -9,6 +9,7 @@ router.get("/verify", controllers.verify);
 
 router.get("/saved-events", controllers.getSavedEvents);
 router.put("/saved-event/:eventId", controllers.updateSavedEvents);
+router.delete("/saved-event/:eventId", controllers.deleteSavedEvents);
 
 router.put("/update-user", controllers.updateUser);
 router.delete("/:id", controllers.deleteUser);
