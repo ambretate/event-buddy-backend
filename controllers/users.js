@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import Event from "../models/Event.js";
 
 let SALT_ROUNDS = 11;
 let TOKEN_KEY = "heresalongkeyforsecurity";
