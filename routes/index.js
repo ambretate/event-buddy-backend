@@ -4,9 +4,6 @@ import userRoutes from "./users.js";
 
 const router = Router();
 
-let server = app.listen(process.env.PORT);
-
-
 router.get("/", (request, response) =>
   response.send("Welcome to the EventBuddy API route")
 );
