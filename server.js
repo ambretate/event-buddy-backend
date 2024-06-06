@@ -7,9 +7,15 @@ import chalk from "chalk";
 
 const app = express();
 const PORT = process.env.PORT || 3017;
+const allowedOrigins = [`https://main--eventb.netlify.app/`];
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: allowedOrigins,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+}));
 app.use(logger("dev"));
 
 app.use("/api", routes);
