@@ -5,16 +5,17 @@ import cors from "cors";
 import logger from "morgan";
 import chalk from "chalk";
 
+const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3017;
-const allowedOrigins = [`https://main--eventb.netlify.app/`];
+const allowedOrigins = ['https://main--eventb.netlify.app/'];
 
 app.use(express.json());
 app.use(cors({
   origin: allowedOrigins,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(logger("dev"));
 
