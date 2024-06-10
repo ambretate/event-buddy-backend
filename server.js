@@ -17,6 +17,13 @@ app.use(cors({
 }));
 app.use(logger("dev"));
 
+const jwtMiddleware = jwt({
+  secret: process.env.JWT_SECRET, 
+  algorithms: ['HS256']
+}).unless({ path: ['/api/login', '/api/register'] }); // Public routes
+
+app.use(jwtMiddleware);
+
 app.use("/api", routes);
 
 db.on("connected", () => {
@@ -26,4 +33,13 @@ db.on("connected", () => {
   app.listen(PORT, () => {
     console.log(chalk.magenta(`Express server running on port ${PORT}`));
   });
+});
+
+// Error handler for JWT authentication errors
+app.use((err, req, res, next) => {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).send('Invalid token');
+  } else {
+    next(err);
+  }
 });
