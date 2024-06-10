@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import chalk from "chalk";
+import jwt from "express-jwt";
 
 const app = express();
 const PORT = process.env.PORT || 3017;
