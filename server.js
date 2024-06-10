@@ -20,7 +20,7 @@ app.use(logger("dev"));
 const jwtMiddleware = jwt({
   secret: process.env.JWT_SECRET, 
   algorithms: ['HS256']
-}).unless({ path: ['/api/login', '/api/register'] }); // Public routes
+}).unless({ path: ['/api/users/sign-up', '/api/users/sign-in'] }); // Public routes
 
 app.use(jwtMiddleware);
 
