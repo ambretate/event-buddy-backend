@@ -8,7 +8,7 @@ import jwt from "express-jwt";
 
 const app = express();
 const PORT = process.env.PORT || 3017;
-const allowedOrigins = ['https://main--eventb.netlify.app/'];
+const allowedOrigins = ['https://main--eventb.netlify.app'];
 
 app.use(express.json());
 app.use(cors({
@@ -18,12 +18,12 @@ app.use(cors({
 }));
 app.use(logger("dev"));
 
-const jwtMiddleware = jwt({
-  secret: process.env.JWT_SECRET, 
-  algorithms: ['HS256']
-}).unless({ path: ['/api/users/sign-up', '/api/users/sign-in'] }); // Public routes
+// const jwtMiddleware = jwt({
+//   secret: process.env.JWT_SECRET, 
+//   algorithms: ['HS256']
+// }).unless({ path: ['/api/users/sign-up', '/api/users/sign-in'] }); // Public routes
 
-app.use(jwtMiddleware);
+// app.use(jwtMiddleware);
 
 app.use("/api", routes);
 
