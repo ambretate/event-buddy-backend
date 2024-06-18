@@ -4,7 +4,6 @@ import express from "express";
 import cors from "cors";
 import logger from "morgan";
 import chalk from "chalk";
-import jwt from "express-jwt";
 
 const app = express();
 const PORT = process.env.PORT || 3017;
@@ -17,13 +16,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(logger("dev"));
-
-// const jwtMiddleware = jwt({
-//   secret: process.env.JWT_SECRET, 
-//   algorithms: ['HS256']
-// }).unless({ path: ['/api/users/sign-up', '/api/users/sign-in'] }); // Public routes
-
-// app.use(jwtMiddleware);
 
 app.use("/api", routes);
 

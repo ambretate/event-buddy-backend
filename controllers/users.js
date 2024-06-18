@@ -39,7 +39,7 @@ export const signUp = async (request, response) => {
     const token = jwt.sign(payload, TOKEN_KEY);
     response.status(201).json({ token });
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     response.status(400).json({ error: error.message });
   }
 };
@@ -67,7 +67,7 @@ export const signIn = async (request, response) => {
       response.status(401).send("Invalid Credentials");
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     response.status(500).json({ error: error.message });
   }
 };
@@ -76,12 +76,11 @@ export const verify = async (request, response) => {
   try {
     const token = request.headers.authorization.split(" ")[1];
     const payload = jwt.verify(token, TOKEN_KEY);
-    console.log(payload);
     if (payload) {
       response.json(payload);
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     response.status(401).send("Not Authorized");
   }
 };
@@ -98,7 +97,7 @@ export const getSavedEvents = async (request, response) => {
       response.json(events);
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
@@ -122,7 +121,7 @@ export const updateSavedEvents = async (request, response) => {
       response.json({ message: "Saved Successfully" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
@@ -145,7 +144,7 @@ export const deleteSavedEvents = async (request, response) => {
       response.json({ message: "Removed successfully" });
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
@@ -209,7 +208,7 @@ export const updateUser = async (request, response) => {
       }
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
@@ -225,7 +224,7 @@ export const deleteUser = async (request, response) => {
 
     throw new Error("User not found");
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     response.status(500).json({ error: error.message });
   }
 };
